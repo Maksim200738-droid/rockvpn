@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>VPN Скруджа</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js"></script>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+  <div class="main-bg">
+    <div class="subscription-block">
+      <div class="sub-header-row">
+        <span class="sub-header-title" data-i18n="subscription">Подписка</span>
+        <button class="sub-link-btn" data-i18n="getLink">Получить ссылку</button>
+      </div>
+      <div class="sub-card">
+        <div class="sub-card-left">
+          <span class="sub-card-icon">
+            <svg width="24" height="24" fill="none"><circle cx="12" cy="12" r="12" fill="#1e88e5"/><path d="M8 12.5l2.5 2.5 5-5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <div class="sub-card-key-block">
+            <span class="sub-card-key" id="vpn-key">nit8e67o</span>
+            <span class="sub-card-expire"><span data-i18n="expires">Истекает через</span> <span id="expires-in">4 дня</span></span>
+          </div>
+        </div>
+        <div class="sub-card-right">
+          <span class="sub-card-arrow">
+            <svg width="20" height="20" fill="none"><path d="M8 5l5 5-5 5" stroke="#b0b0b0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </div>
+        <div class="sub-card-qr">
+          <canvas id="qr-canvas" width="64" height="64"></canvas>
+        </div>
+      </div>
+    </div>
+    <div class="install-block">
+      <div class="install-header-row">
+        <span class="install-header-title" data-i18n="install">Установка</span>
+        <div class="install-device-select">
+          <span class="device-icon">
+            <svg width="22" height="22" fill="none"><rect x="3" y="5" width="16" height="10" rx="2" fill="#b0b0b0"/><rect x="8" y="16" width="4" height="1.5" rx="0.75" fill="#b0b0b0"/></svg>
+          </span>
+          <select class="device-select">
+            <option data-i18n="devicePC">ПК</option>
+            <option data-i18n="devicePhone">Телефон</option>
+          </select>
+        </div>
+      </div>
+      <div class="install-tabs-row">
+        <button class="install-tab active"><span class="tab-star">★</span> <span data-i18n="hiddify">Hiddify</span></button>
+        <button class="install-tab"><span data-i18n="clash">Clash Verge</span></button>
+      </div>
+      <div class="steps-vertical">
+        <div class="step-vert-line"></div>
+        <div class="step-row">
+          <span class="step-icon step-download" data-tooltip="Скачать приложение">
+            <svg width="24" height="24" fill="none"><circle cx="12" cy="12" r="12" fill="#00c6fb"/><path d="M12 7v7m0 0l-3-3m3 3l3-3" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <div class="step-content">
+            <div class="step-title" data-i18n="downloadHiddify">Скачайте Hiddify</div>
+            <div class="step-desc" data-i18n="downloadHiddifyDesc">В главном разделе нажмите большую кнопку включения в центре для подключения к VPN. При необходимости выберите другой сервер в разделе Прокси.</div>
+            <div class="os-btns">
+              <a href="#" class="os-btn"><span class="os-ico win" data-tooltip="Windows"></span><span data-i18n="windows">Windows</span></a>
+              <a href="#" class="os-btn"><span class="os-ico mac" data-tooltip="macOS"></span><span data-i18n="macos">macOS</span></a>
+              <a href="#" class="os-btn"><span class="os-ico lin" data-tooltip="Linux"></span><span data-i18n="linux">Linux</span></a>
+            </div>
+          </div>
+        </div>
+        <div class="step-row">
+          <span class="step-icon step-info" data-tooltip="Информация">
+            <svg width="24" height="24" fill="none"><circle cx="12" cy="12" r="12" fill="#00c6fb"/><text x="12" y="16" text-anchor="middle" font-size="14" fill="#fff" font-family="Arial" font-weight="bold">i</text></svg>
+          </span>
+          <div class="step-content">
+            <div class="step-title" data-i18n="serverSwitch">Выбор/смена сервера</div>
+            <div class="step-desc" data-i18n="serverSwitchDesc">После подключения, слева выберите 'Прокси' и выберите нужный сервер.</div>
+          </div>
+        </div>
+        <div class="step-row">
+          <span class="step-icon step-plus" data-tooltip="Добавить подписку">
+            <svg width="24" height="24" fill="none"><circle cx="12" cy="12" r="12" fill="#00c6fb"/><path d="M12 8v8M8 12h8" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+          </span>
+          <div class="step-content">
+            <div class="step-title" data-i18n="addSub">Добавить подписку</div>
+            <div class="step-desc" data-i18n="addSubDesc">Нажмите кнопку ниже, чтобы добавить подписку</div>
+            <button class="add-sub-btn" data-i18n="addSubBtn">Добавить подписку</button>
+          </div>
+        </div>
+        <div class="step-row">
+          <span class="step-icon step-check" data-tooltip="Готово">
+            <svg width="24" height="24" fill="none"><circle cx="12" cy="12" r="12" fill="#00c6fb"/><path d="M8 12.5l2.5 2.5 5-5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <div class="step-content">
+            <div class="step-title" data-i18n="ready">Подключите и используйте</div>
+            <div class="step-desc" data-i18n="readyDesc">В главном разделе нажмите большую кнопку включения в центре для подключения к VPN. Не забудьте выбрать сервер в списке серверов. При необходимости выберите другой сервер из списка серверов.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="lang-select-row">
+      <button class="lang-btn">
+        <span class="lang-flag">🇷🇺</span>
+        <span class="lang-txt">Русский</span>
+        <span class="lang-arrow"><svg width="16" height="16" fill="none"><path d="M6 6l4 4 4-4" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></span>
+      </button>
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html> 
